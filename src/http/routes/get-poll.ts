@@ -41,7 +41,19 @@ export async function GetPoll(app: FastifyInstance) {
             return obj
         }, {} as Record<string, number>)
 
-        return reply.send({ votes, poll })
+        return reply.send({
+            poll: {
+                id: poll.id,
+                title: poll.title,
+                options: poll.options.map(option => {
+                    return {
+                        id: option.id,
+                        title: option.title,
+                        score: (option.id in votes) ? votes[option.id] : 0,
+                    }
+                })
+            }
+        })
 
     })
 }
