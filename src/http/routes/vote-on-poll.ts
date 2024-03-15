@@ -4,7 +4,7 @@ import { FastifyInstance } from "fastify"
 import { randomUUID } from "crypto"
 import { redis } from "../../lib/redis"
 
-export async function VoteOnPoll(app: FastifyInstance) {
+export async function voteOnPoll(app: FastifyInstance) {
     app.post('/polls/:pollId/votes', async (request, reply) => {
         const voteOnPollBody = z.object({
             pollOptionId: z.string().uuid()
