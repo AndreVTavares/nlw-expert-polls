@@ -12,7 +12,7 @@ class VotingPubSub {
         this.channels[pollId].push(subscriber)
     }
 
-    public(pollId: string, message: Message) {
+    publish(pollId: string, message: Message) {
         if(!this.channels[pollId]) {
             return;
         }
